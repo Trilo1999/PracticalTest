@@ -1,0 +1,39 @@
+<nav class="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Hello {{name}}({{role}})</a>
+    <!-- <input type="text" class="form-control form-control-primary w-100" placeholder="Search..." > -->
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" (click)="logout()" style="cursor: pointer;">Logout</a>
+        </li>
+    </ul>
+</nav>
+<div class="container-fluid" style="margin-top: 100px;">
+    <table *ngIf="role =='admin' ">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Is Active</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let user of users; let i =index" >
+
+            <td *ngIf="user.active==1">{{user.id}}</td>
+            <td *ngIf="user.active==1">{{user.name}}</td>
+            <td *ngIf="user.active==1">{{user.email}}</td>
+            <td *ngIf="user.active==1">{{user.role}}</td>
+            <td *ngIf="user.active==1">Active</td>
+            <td style="cursor: pointer;" (click)="inactiveUser(user.id,user.email,user.name,i)" *ngIf="user.active==1"> <i class="fas fa-times-circle"
+                    style="color: red;"></i></td>
+
+        </tr>
+
+
+
+    </table>
+    <h2 *ngIf="role =='user' ">
+      <p *ngIf="isActive =='1' ">User Is active</p>  
+      <p *ngIf="isActive =='0' ">User Is Inactive</p>
+    </h2>
+</div>
